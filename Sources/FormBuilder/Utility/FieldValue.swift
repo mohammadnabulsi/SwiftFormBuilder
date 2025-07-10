@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FieldValue: Codable, Equatable {
+public enum FieldValue: Codable, Equatable {
     case text(String)
     case number(Double)
     case boolean(Bool)
@@ -16,7 +16,7 @@ enum FieldValue: Codable, Equatable {
     case multiSelection([String])
     case none
     
-    var stringValue: String {
+    public var stringValue: String {
         switch self {
         case .text(let value): return value
         case .number(let value): return String(value)
@@ -28,7 +28,7 @@ enum FieldValue: Codable, Equatable {
         }
     }
     
-    var boolValue: Bool {
+    public var boolValue: Bool {
         switch self {
         case .boolean(let value): return value
         case .text(let value): return !value.isEmpty

@@ -7,13 +7,13 @@
 
 import SwiftUICore
 
-struct FormRow: FormComponent {
-    let id = UUID().uuidString
-    let components: [any FormComponent]
-    let spacing: CGFloat
-    let alignment: VerticalAlignment
+public struct FormRow: FormComponent {
+    public let id = UUID().uuidString
+    public let components: [any FormComponent]
+    public let spacing: CGFloat
+    public let alignment: VerticalAlignment
     
-    init(spacing: CGFloat = 16, alignment: VerticalAlignment = .top, @FormComponentBuilder components: () -> [any FormComponent]) {
+    public init(spacing: CGFloat = 16, alignment: VerticalAlignment = .top, @FormComponentBuilder components: () -> [any FormComponent]) {
         self.spacing = spacing
         self.alignment = alignment
         self.components = components()

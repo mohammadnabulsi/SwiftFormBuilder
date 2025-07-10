@@ -9,8 +9,6 @@ import SwiftUI
 
 struct FormSectionView: View {
     let section: FormSection
-    @ObservedObject var formState: FormState
-    @ObservedObject var validator: FormValidator
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -23,7 +21,7 @@ struct FormSectionView: View {
             
             // Render all components
             ForEach(section.components, id: \.id) { component in
-                FormComponentView(component: component, formState: formState, validator: validator)
+                FormComponentView(component: component)
             }
         }
         .padding()

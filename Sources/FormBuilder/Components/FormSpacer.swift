@@ -7,17 +7,17 @@
 
 import SwiftUICore
 
-struct FormSpacer: FormComponent {
-    let id = UUID().uuidString
-    let height: CGFloat?
-    let width: CGFloat?
+public struct FormSpacer: FormComponent {
+    public let id = UUID().uuidString
+    public let height: CGFloat?
+    public let width: CGFloat?
     
-    init(height: CGFloat? = nil, width: CGFloat? = nil) {
+    public init(height: CGFloat? = nil, width: CGFloat? = nil) {
         self.height = height
         self.width = width
     }
     
-    init(_ size: CGFloat) {
+    public init(_ size: CGFloat) {
         self.height = size
         self.width = size
     }

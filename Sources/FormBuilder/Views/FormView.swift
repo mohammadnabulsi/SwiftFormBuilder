@@ -7,15 +7,19 @@
 
 import SwiftUI
 
-struct FormView<Definition: FormDefinition>: View {
+public struct FormView<Definition: FormDefinition>: View {
     let definition: Definition
     @StateObject private var formState = FormState()
     @StateObject private var validator = FormValidator()
     
-    var onSubmit: (([String: FieldValue]) -> Void)?
-    var onValueChanged: (([String: FieldValue]) -> Void)?
+    public var onSubmit: (([String: FieldValue]) -> Void)?
+    public var onValueChanged: (([String: FieldValue]) -> Void)?
     
-    var body: some View {
+    public init(definition: Definition) {
+        self.definition = definition
+    }
+    
+    public var body: some View {
         NavigationView {
             ScrollView {
                 LazyVStack(spacing: 20) {
@@ -24,6 +28,8 @@ struct FormView<Definition: FormDefinition>: View {
                     }
                 }
                 .padding()
+                .environmentObject(formState)
+                .environmentObject(validator)
             }
             .navigationTitle(definition.title)
             .navigationBarTitleDisplayMode(.large)
@@ -42,17 +48,17 @@ struct FormView<Definition: FormDefinition>: View {
     private func viewComponent(component: any FormComponent) -> some View {
         if let section = component as? FormSection {
             FormSectionView(
-                section: section,
-                formState: formState,
-                validator: validator
+                section: section
             )
         } else {
-            FormComponentView(component: component, formState: formState, validator: validator)
+            FormComponentView(
+                component: component
+            )
         }
     }
     
     private func submitForm() {
-//        let allFields = definition.body.sections.flatMap { $0.fields }
+//        let allFields = definition.body.components.compactMap { $0 as? (any FormField) }
 //        validator.validateAll(fields: allFields, in: formState)
 //        
 //        if formState.isValid {
@@ -60,9 +66,6 @@ struct FormView<Definition: FormDefinition>: View {
 //            
 //            // Call completion handler with form values
 //            onSubmit?(formState.values)
-//            
-//            // Handle form submission
-//            print("Form submitted with values: \(formState.values)")
 //            
 //            // Simulate async submission
 //            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -72,7 +75,7 @@ struct FormView<Definition: FormDefinition>: View {
     }
 }
 
-extension FormView {
+public extension FormView {
     func onSubmit(_ handler: @escaping ([String: FieldValue]) -> Void) -> FormView {
         var copy = self
         copy.onSubmit = handler

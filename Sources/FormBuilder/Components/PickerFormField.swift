@@ -6,14 +6,14 @@
 //
 
 
-struct PickerFormField: FormField {
-    let id: String
-    let label: String
-    let isRequired: Bool
-    let validationRules: [ValidationRule]
-    let options: [String]
+public struct PickerFormField: FormField {
+    public let id: String
+    public let label: String
+    public let isRequired: Bool
+    public let validationRules: [ValidationRule]
+    public let options: [String]
     
-    init(id: String, label: String? = nil, isRequired: Bool = false, validationRules: [ValidationRule] = [], options: [String] = []) {
+    public init(id: String, label: String? = nil, isRequired: Bool = false, validationRules: [ValidationRule] = [], options: [String] = []) {
         self.id = id
         self.label = label ?? id.capitalized
         self.isRequired = isRequired
@@ -21,15 +21,15 @@ struct PickerFormField: FormField {
         self.options = options
     }
     
-    func label(_ text: String) -> PickerFormField {
+    public func label(_ text: String) -> PickerFormField {
         return PickerFormField(id: id, label: text, isRequired: isRequired, validationRules: validationRules, options: options)
     }
     
-    func options(_ options: [String]) -> PickerFormField {
+    public func options(_ options: [String]) -> PickerFormField {
         return PickerFormField(id: id, label: label, isRequired: isRequired, validationRules: validationRules, options: options)
     }
     
-    func required(_ required: Bool = true) -> PickerFormField {
+    public func required(_ required: Bool = true) -> PickerFormField {
         var rules = validationRules
         if required && !rules.contains(where: { $0 is RequiredValidationRule }) {
             rules.append(RequiredValidationRule())

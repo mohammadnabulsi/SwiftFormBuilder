@@ -5,7 +5,7 @@
 //  Created by Mohammad Nabulsi on 07.07.25.
 //
 
-protocol FormDefinition {
+public protocol FormDefinition {
     associatedtype Content: FormContent
     
     var title: String { get }

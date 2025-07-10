@@ -9,8 +9,8 @@ import SwiftUI
 
 struct FormFieldView: View {
     let field: any FormField
-    @ObservedObject var formState: FormState
-    @ObservedObject var validator: FormValidator
+    @EnvironmentObject var formState: FormState
+    @EnvironmentObject var validator: FormValidator
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -52,7 +52,9 @@ struct FormFieldView: View {
         case let textField as TextFormField:
             TextField(textField.placeholder ?? "", text: textBinding(for: field.id))
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .onChange(of: formState.getValue(for: field.id)) { _, newValue in
+                .onChange(of: formState.getValue(for: field.id)) { oldValue, newValue in
+                    guard oldValue != newValue else { return }
+                    
                     validator.validate(field: field, value: newValue, in: formState)
                 }
                 

@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct FormSection: FormComponent {
-    var id: String = UUID().uuidString
-    let title: String?
-    let components: [any FormComponent]
+// TODO: Check if needed
+public struct FormSection: FormComponent {
+    public var id: String = UUID().uuidString
+    public let title: String?
+    public let components: [any FormComponent]
     
-    init(_ title: String? = nil, @FormComponentBuilder components: () -> [any FormComponent]) {
+    public init(_ title: String? = nil, @FormComponentBuilder components: () -> [any FormComponent]) {
         self.title = title
         self.components = components()
     }

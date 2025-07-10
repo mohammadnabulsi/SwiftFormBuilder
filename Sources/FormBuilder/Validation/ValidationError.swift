@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum ValidationError: Error, LocalizedError {
+public enum ValidationError: Error, LocalizedError {
     case required
     case invalidEmail
     case minLength(Int)
     case maxLength(Int)
     case custom(String)
     
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .required: return "This field is required"
         case .invalidEmail: return "Please enter a valid email address"

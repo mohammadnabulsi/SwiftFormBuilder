@@ -10,25 +10,25 @@ import SwiftUI
 
 struct FormComponentView: View {
     let component: any FormComponent
-    @ObservedObject var formState: FormState
-    @ObservedObject var validator: FormValidator
+    @EnvironmentObject var formState: FormState
+    @EnvironmentObject var validator: FormValidator
     
     var body: some View {
         switch component {
         case let field as any FormField:
-            FormFieldView(field: field, formState: formState, validator: validator)
+            FormFieldView(field: field)
             
         case let row as FormRow:
             HStack(alignment: row.alignment, spacing: row.spacing) {
                 ForEach(row.components, id: \.id) { component in
-                    FormComponentView(component: component, formState: formState, validator: validator)
+                    FormComponentView(component: component)
                 }
             }
             
         case let column as FormColumn:
             VStack(alignment: column.alignment, spacing: column.spacing) {
                 ForEach(column.components, id: \.id) { component in
-                    FormComponentView(component: component, formState: formState, validator: validator)
+                    FormComponentView(component: component)
                 }
             }
             

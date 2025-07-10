@@ -7,14 +7,14 @@
 
 import SwiftUICore
 
-struct FormText: FormComponent {
-    let id = UUID().uuidString
-    let text: String
-    let font: Font
-    let color: Color
-    let alignment: TextAlignment
+public struct FormText: FormComponent {
+    public let id = UUID().uuidString
+    public let text: String
+    public let font: Font
+    public let color: Color
+    public let alignment: TextAlignment
     
-    init(_ text: String, font: Font = .body, color: Color = .primary, alignment: TextAlignment = .leading) {
+    public init(_ text: String, font: Font = .body, color: Color = .primary, alignment: TextAlignment = .leading) {
         self.text = text
         self.font = font
         self.color = color

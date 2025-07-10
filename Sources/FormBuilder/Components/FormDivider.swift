@@ -7,13 +7,13 @@
 
 import SwiftUICore
 
-struct FormDivider: FormComponent {
-    let id = UUID().uuidString
-    let color: Color
-    let thickness: CGFloat
-    let padding: EdgeInsets
+public struct FormDivider: FormComponent {
+    public let id = UUID().uuidString
+    public let color: Color
+    public let thickness: CGFloat
+    public let padding: EdgeInsets
     
-    init(color: Color = Color(.separator), thickness: CGFloat = 1, padding: EdgeInsets = EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)) {
+    public init(color: Color, thickness: CGFloat = 1, padding: EdgeInsets = EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)) {
         self.color = color
         self.thickness = thickness
         self.padding = padding
