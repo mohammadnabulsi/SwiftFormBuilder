@@ -157,22 +157,27 @@ struct ComprehensiveForm: FormDefinition {
             
             Spacer(20)
             
+            
+            ToggleField("agreeToTerms")
+                .label("I agree to the Terms and Conditions")
+                .required()
+            
             // Conditional section - only shows if willing to relocate
-//            ConditionalComponent(condition: {
-//                true
-//            }) {
-//                Section("Relocation Preferences") {
-//                    Text("Since you're willing to relocate, please provide additional information:")
-//                    
-//                    PickerField("preferredLocation")
-//                        .label("Preferred Location")
-//                        .options(["New York", "San Francisco", "Austin", "Seattle", "Remote"])
-//                    
-//                    ToggleField("needsRelocationAssistance")
-//                        .label("Needs Relocation Assistance")
-//                        .defaultValue(true)
-//                }
-//            }
+            ConditionalComponent(condition: { values in
+                values["agreeToTerms"]?.boolValue ?? false
+            }) {
+                Section("Relocation Preferences") {
+                    Text("Since you're willing to relocate, please provide additional information:")
+                    
+                    PickerField("preferredLocation")
+                        .label("Preferred Location")
+                        .options(["New York", "San Francisco", "Austin", "Seattle", "Remote"])
+                    
+                    ToggleField("needsRelocationAssistance")
+                        .label("Needs Relocation Assistance")
+                        .defaultValue(true)
+                }
+            }
             
             Divider(color: .blue, thickness: 2)
             
@@ -196,26 +201,6 @@ struct ComprehensiveForm: FormDefinition {
                 }
             }
             
-            Spacer(24)
-            
-            // Dynamic list example - Previous employers
-//            if !getPreviousEmployers().isEmpty {
-//                Section("Previous Employment") {
-//                    List(items: getPreviousEmployers()) { employer in
-//                        Card(title: employer.name, style: .init(backgroundColor: Color(.systemGray6), cornerRadius: 8)) {
-//                            Row {
-//                                TextField("position_\(employer.id)")
-//                                    .label("Position")
-//                                    .placeholder("Software Developer")
-//                                
-//                                TextField("duration_\(employer.id)")
-//                                    .label("Duration")
-//                                    .placeholder("2 years")
-//                            }
-//                        }
-//                    }
-//                }
-//            }
             
             Spacer(20)
             
@@ -230,11 +215,11 @@ struct ComprehensiveForm: FormDefinition {
                     
                     ToggleField("agreeToTerms")
                         .label("I agree to the Terms and Conditions")
-//                        .required()
+                        .required()
                     
                     ToggleField("agreeToPrivacy")
                         .label("I agree to the Privacy Policy")
-//                        .required()
+                        .required()
                     
                     ToggleField("allowMarketing")
                         .label("I agree to receive marketing communications")

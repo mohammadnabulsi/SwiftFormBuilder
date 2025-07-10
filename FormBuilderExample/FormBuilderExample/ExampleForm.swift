@@ -1,5 +1,5 @@
 //
-//  ExampleForm.swift
+//  BasicForm.swift
 //  FormBuilderExample
 //
 //  Created by Mohammad Nabulsi on 10.07.25.
@@ -7,7 +7,7 @@
 
 import FormBuilder
 
-struct ExampleForm: FormDefinition {
+struct BasicForm: FormDefinition {
     var title: String { "Enhanced Form" }
     var submitButtonTitle: String { "Submit" }
     

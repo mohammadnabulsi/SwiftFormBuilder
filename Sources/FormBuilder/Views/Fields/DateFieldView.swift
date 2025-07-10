@@ -9,73 +9,90 @@ import SwiftUI
 
 struct DateFieldView: View {
     let field: DateFormField
-    @EnvironmentObject var formState: FormState
+    @Environment(\.formStateManager) private var stateManager
     @EnvironmentObject var validator: FormValidator
     
     @State private var localValue: Date = Date()
-    @State private var localValidationResult: ValidationResult?
+    @State private var validationResult: ValidationResult?
     @State private var hasInitialized: Bool = false
     
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            // Field label
-            HStack {
-                Text(field.label)
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                
-                if field.isRequired {
-                    Text("*")
-                        .foregroundColor(.red)
-                        .font(.headline)
-                }
-                
-                Spacer()
-            }
-            
-            // Date picker input
-            DatePicker("", selection: $localValue, displayedComponents: .date)
-                .datePickerStyle(CompactDatePickerStyle())
-                .onChange(of: localValue) { _, newValue in
-                    commitValue(newValue)
-                }
-            
-            // Validation messages (using local validation result)
-            if let validationResult = localValidationResult,
-               !validationResult.isValid {
-                VStack(alignment: .leading, spacing: 4) {
-                    ForEach(validationResult.errors, id: \.localizedDescription) { error in
-                        Text(error.localizedDescription)
-                            .font(.caption)
-                            .foregroundColor(.red)
-                    }
-                }
-            }
+    private var fieldStyle: FieldStyle? {
+        if let styledField = field as? StyledDateFormField {
+            return styledField.style
         }
-        .onAppear {
-            initializeLocalState()
+        return nil
+    }
+    
+    var body: some View {
+        if fieldStyle?.isHidden == true {
+            EmptyView()
+        } else {
+            VStack(alignment: .leading, spacing: 8) {
+                // Field label
+                HStack {
+                    Text(field.label)
+                        .font(fieldStyle?.labelFont ?? .headline)
+                        .foregroundColor(fieldStyle?.labelColor ?? .primary)
+                    
+                    if field.isRequired {
+                        Text("*")
+                            .foregroundColor(.red)
+                            .font(.headline)
+                    }
+                    
+                    Spacer()
+                }
+                
+                // Date picker with range
+                DatePicker("", selection: $localValue, in: field.dateRange ?? Date.distantPast...Date.distantFuture, displayedComponents: .date)
+                    .datePickerStyle(CompactDatePickerStyle())
+                    .disabled(fieldStyle?.isDisabled == true)
+                    .onChange(of: localValue) { _, newValue in
+                        commitValue(newValue)
+                    }
+                    .padding(fieldStyle?.padding ?? EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                    .background(
+                        RoundedRectangle(cornerRadius: fieldStyle?.cornerRadius ?? 8)
+                            .fill(fieldStyle?.backgroundColor ?? Color.clear)
+                    )
+                
+                // Validation messages
+                if let result = validationResult, !result.isValid {
+                    ValidationErrorView(errors: result.errors)
+                        .transition(.asymmetric(
+                            insertion: .opacity.combined(with: .move(edge: .top)),
+                            removal: .opacity
+                        ))
+                }
+            }
+            .animation(.easeInOut(duration: 0.2), value: validationResult?.isValid ?? false)
+            .opacity(fieldStyle?.isDisabled == true ? 0.6 : 1.0)
+            .onAppear {
+                initializeField()
+            }
         }
     }
     
-    private func initializeLocalState() {
+    private func initializeField() {
         if !hasInitialized {
-            if case .date(let date) = formState.getValue(for: field.id) {
+            if case .date(let date) = stateManager.getValue(for: field.id) {
                 localValue = date
             }
-            localValidationResult = formState.getValidationResult(for: field.id)
+            validationResult = stateManager.getValidationResult(for: field.id)
             hasInitialized = true
         }
     }
     
     private func commitValue(_ value: Date) {
-        formState.setValue(.date(value), for: field.id)
+        stateManager.setValue(.date(value), for: field.id)
         
-        // Create a temporary form state for local validation
-        let tempFormState = FormState()
-        tempFormState.setValue(.date(value), for: field.id)
-        // Use FormValidator to validate locally
-        localValidationResult = validator.validate(field: field, value: .date(localValue))
-        // Also update the main form state validation
-        formState.setValidationResult(localValidationResult, for: field.id)
+        // Validate with slight delay for smoother UI
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            let result = validator.validate(field: field, value: .date(value))
+            withAnimation(.easeInOut(duration: 0.2)) {
+                validationResult = result
+            }
+            stateManager.setValidationResult(result, for: field.id)
+        }
     }
 }

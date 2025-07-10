@@ -9,11 +9,11 @@ import Foundation
 
 public struct ConditionalFormComponent: FormComponent {
     public let id = UUID().uuidString
-    public let condition: () -> Bool
-    public let component: any FormComponent
+    public let condition: ([String: FieldValue]) -> Bool
+    public let components: [any FormComponent]
     
-    public init(condition: @escaping () -> Bool, @FormComponentBuilder component: () -> any FormComponent) {
+    public init(condition: @escaping ([String: FieldValue]) -> Bool, @FormComponentBuilder components: () -> [any FormComponent]) {
         self.condition = condition
-        self.component = component()
+        self.components = components()
     }
 }

@@ -9,8 +9,10 @@ import SwiftUI
 
 public struct FormView<Definition: FormDefinition>: View {
     let definition: Definition
-    @StateObject private var formState = FormState()
+    private var stateManager = FormStateManager()
     @StateObject private var validator = FormValidator()
+    @State private var isFormValid = false
+    @State private var isSubmitting = false
     private var layout: FormLayout
     private var behavior: FormBehavior
     public var onSubmit: (([String: FieldValue]) -> Void)?
@@ -30,34 +32,36 @@ public struct FormView<Definition: FormDefinition>: View {
     public var body: some View {
         NavigationView {
             ScrollView {
-                LazyVStack(spacing: 20) {
+                VStack(spacing: 20) {
                     ForEach(definition.body.components, id: \.id) { component in
                         FormComponentView(component: component)
                     }
                 }
-                .padding()
-                .environmentObject(formState)
+                .padding(layout.contentPadding)
+                .environment(\.formStateManager, stateManager)
                 .environmentObject(validator)
             }
-//            .background(layout.backgroundColor)
-//            .navigationTitle(definition.title)
-//            .navigationBarTitleDisplayMode(layout.titleDisplayMode)
-//            .toolbar {
-//                if layout.showSubmitButton {
-//                    ToolbarItem(placement: .navigationBarTrailing) {
-//                        Button(definition.submitButtonTitle) {
-//                            submitForm()
-//                        }
-//                        // TODO: 
-////                        .buttonStyle(formState.isValid ? theme.submitButtonStyle : theme.submitButtonDisabledStyle)
-////                        .disabled(!formState.isValid && behavior.disableSubmitWhenInvalid)
-//                    }
-//                }
-//            }
+            .background(layout.backgroundColor.ignoresSafeArea())
+            .navigationTitle(definition.title)
+            .navigationBarTitleDisplayMode(layout.titleDisplayMode)
+            .toolbar {
+                if layout.showSubmitButton {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(definition.submitButtonTitle) {
+                            submitForm()
+                        }
+                        .buttonStyle(FormButtonStyle.primary)
+                        .disabled(!isFormValid && behavior.disableSubmitWhenInvalid)
+                        .opacity(isFormValid || !behavior.disableSubmitWhenInvalid ? 1.0 : 0.6)
+                    }
+                }
+            }
         }
-//        .onReceive(formState.$isValid) { isValid in
-//            onValidationChanged?(isValid)
-//        }
+        .onReceive(stateManager.formValidityPublisher) { isValid in
+            isFormValid = isValid
+            onValidationChanged?(isValid)
+        }
+        .disabled(isSubmitting)
     }
     
     private func submitForm() {
@@ -65,50 +69,53 @@ public struct FormView<Definition: FormDefinition>: View {
             validateAllFields()
         }
         
-        if formState.isValid || !behavior.preventSubmitWhenInvalid {
-            onSubmit?(getAllValues())
+        if isFormValid || !behavior.preventSubmitWhenInvalid {
+            let values = stateManager.getAllValues()
+            onSubmit?(values)
         }
     }
     
     private func validateAllFields() {
-//        let allFields = extractAllFields(from: definition.body.components)
-//        for field in allFields {
-//            let value = formState.getValue(for: field.id)
-//            let result = validator.validate(field: field, value: value)
-//            formState.setValidationResult(result, for: field.id)
-//        }
-    }
-    
-    private func getAllValues() -> [String: FieldValue] {
-//        let allFields = extractAllFields(from: definition.body.components)
-        var values: [String: FieldValue] = [:]
-//        for field in allFields {
-//            values[field.id] = formState.getValue(for: field.id)
-//        }
-        return values
+        let allFields = extractAllFields(from: definition.body.components)
+        for field in allFields {
+            let value = stateManager.getValue(for: field.id)
+            let result = validator.validate(field: field, value: value)
+            stateManager.setValidationResult(result, for: field.id)
+        }
     }
     
     private func extractAllFields(from components: [any FormComponent]) -> [any FormField] {
         var fields: [any FormField] = []
         
-//        for component in components {
-//            if let field = component as? any FormField {
-//                fields.append(field)
-//            } else if let section = component as? FormSection {
-//                fields.append(contentsOf: section.allFields)
-//            } else if let row = component as? FormRow {
-//                fields.append(contentsOf: extractAllFields(from: row.components))
-//            } else if let column = component as? FormColumn {
-//                fields.append(contentsOf: extractAllFields(from: column.components))
-//            } else if let card = component as? FormCard {
-//                fields.append(contentsOf: extractAllFields(from: card.components))
-//            }
-//        }
+        for component in components {
+            if let field = component as? any FormField {
+                fields.append(field)
+            } else if let section = component as? FormSection {
+                fields.append(contentsOf: section.allFields)
+            } else if let row = component as? FormRow {
+                fields.append(contentsOf: extractAllFields(from: row.components))
+            } else if let column = component as? FormColumn {
+                fields.append(contentsOf: extractAllFields(from: column.components))
+            } else if let card = component as? FormCard {
+                fields.append(contentsOf: extractAllFields(from: card.components))
+            } else if let list = component as? FormList<AnyIdentifiable> {
+                // Handle dynamic lists
+                for item in list.items {
+                    let itemComponent = list.itemBuilder(item)
+                    if let field = itemComponent as? any FormField {
+                        fields.append(field)
+                    } else {
+                        fields.append(contentsOf: extractAllFields(from: [itemComponent]))
+                    }
+                }
+            }
+        }
         
         return fields
     }
 }
 
+// MARK: - Builder Pattern Extensions
 public extension FormView {
     func layout(_ layout: FormLayout) -> FormView {
         return FormView(definition: definition, layout: layout, behavior: behavior)
@@ -136,6 +143,7 @@ public extension FormView {
         return copy
     }
 }
+
 public struct AnyIdentifiable: Identifiable {
     public let id: AnyHashable
     private let _base: Any

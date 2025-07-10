@@ -98,10 +98,10 @@ public func Card(
 }
 
 public func ConditionalComponent(
-    condition: @escaping () -> Bool,
-    @FormComponentBuilder component: () -> any FormComponent
+    condition: @escaping ([String: FieldValue]) -> Bool,
+    @FormComponentBuilder components: () -> [any FormComponent]
 ) -> ConditionalFormComponent {
-    return ConditionalFormComponent(condition: condition, component: component)
+    return ConditionalFormComponent(condition: condition, components: components)
 }
 
 public func List<Item: Identifiable>(

@@ -19,7 +19,6 @@ struct FormCardView: View {
                         Text(title)
                             .font(.title2)
                             .fontWeight(.semibold)
-                            .foregroundColor(.primary)
                     }
                     
                     if let subtitle = card.subtitle {
@@ -30,8 +29,8 @@ struct FormCardView: View {
                 }
             }
             
-            // Card content
-            LazyVStack {
+            // Card content - use VStack for better performance
+            VStack(spacing: 12) {
                 ForEach(card.components, id: \.id) { component in
                     FormComponentView(component: component)
                 }
@@ -41,14 +40,14 @@ struct FormCardView: View {
         .background(
             RoundedRectangle(cornerRadius: card.style.cornerRadius)
                 .fill(card.style.backgroundColor)
-                .overlay(
-                    RoundedRectangle(cornerRadius: card.style.cornerRadius)
-                        .stroke(
-                            card.style.borderColor ?? Color.clear,
-                            lineWidth: card.style.borderWidth
-                        )
+                .shadow(radius: card.style.shadowRadius)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: card.style.cornerRadius)
+                .strokeBorder(
+                    card.style.borderColor ?? Color.clear,
+                    lineWidth: card.style.borderWidth
                 )
         )
-        .shadow(radius: card.style.shadowRadius)
     }
 }

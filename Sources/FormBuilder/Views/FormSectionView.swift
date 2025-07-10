@@ -13,7 +13,7 @@ struct FormSectionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             if let title = section.title {
-                SwiftUI.Text(title)
+                Text(title)
                     .font(.title2)
                     .fontWeight(.semibold)
                     .padding(.bottom, 8)
@@ -25,7 +25,9 @@ struct FormSectionView: View {
             }
         }
         .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color(.systemGray6))
+        )
     }
 }
