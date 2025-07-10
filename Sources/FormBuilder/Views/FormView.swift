@@ -38,7 +38,7 @@ public struct FormView<Definition: FormDefinition>: View {
                     Button(definition.submitButtonTitle) {
                         submitForm()
                     }
-                    .disabled(!formState.isValid || formState.isSubmitting)
+                    .disabled(!formState.isValid)
                 }
             }
         }

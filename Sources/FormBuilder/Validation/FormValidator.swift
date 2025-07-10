@@ -8,7 +8,7 @@
 import Foundation
 
 class FormValidator: ObservableObject {
-    func validate(field: any FormField, value: FieldValue, in formState: FormState) {
+    func validate(field: any FormField, value: FieldValue) -> ValidationResult {
         var errors: [ValidationError] = []
         
         for rule in field.validationRules {
@@ -18,14 +18,6 @@ class FormValidator: ObservableObject {
             }
         }
         
-        let validationResult = ValidationResult(isValid: errors.isEmpty, errors: errors)
-        formState.validationResults[field.id] = validationResult
-    }
-    
-    func validateAll(fields: [any FormField], in formState: FormState) {
-        for field in fields {
-            let value = formState.getValue(for: field.id)
-            validate(field: field, value: value, in: formState)
-        }
+        return ValidationResult(isValid: errors.isEmpty, errors: errors)
     }
 }
