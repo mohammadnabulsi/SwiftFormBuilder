@@ -11,7 +11,7 @@ struct ExampleForm: FormDefinition {
     var title: String { "Enhanced Form" }
     var submitButtonTitle: String { "Submit" }
     
-    var body: FormComponents {
+    var body: any FormContent {
         return FormComponents {
             // Single field
             TextField("email2")

@@ -19,14 +19,16 @@ struct FormComponentView: View {
             FormFieldView(field: field)
             
         case let row as FormRow:
-            HStack(alignment: row.alignment, spacing: row.spacing) {
-                ForEach(row.components, id: \.id) { component in
-                    FormComponentView(component: component)
+            ScrollView(.horizontal) {
+                LazyHStack(alignment: row.alignment, spacing: row.spacing) {
+                    ForEach(row.components, id: \.id) { component in
+                        FormComponentView(component: component)
+                    }
                 }
             }
-            
+
         case let column as FormColumn:
-            VStack(alignment: column.alignment, spacing: column.spacing) {
+            LazyVStack(alignment: column.alignment, spacing: column.spacing) {
                 ForEach(column.components, id: \.id) { component in
                     FormComponentView(component: component)
                 }
@@ -58,9 +60,28 @@ struct FormComponentView: View {
                 .foregroundColor(text.color)
                 .multilineTextAlignment(text.alignment)
             
+        case let list as FormList<AnyIdentifiable>:
+            LazyVStack {
+                ForEach(list.items, id: \.id) { item in
+                    FormComponentView(component: list.itemBuilder(item))
+                }
+            }
+        case let section as FormSection:
+            FormSectionView(section: section)
+            
+        case let card as FormCard:
+            FormCardView(card: card)
+//        case let conditional as ConditionalFormComponent:
+//            if conditional.condition(formState) {
+//                FormComponentView(component: conditional.component)
+//            }
+            
+        case let stepper as FormStepper:
+            FormStepperView(stepper: stepper)
         default:
-            SwiftUI.Text("Unknown component")
+            SwiftUI.Text("Unknown component: \(String(describing: type(of: component)))")
                 .foregroundColor(.red)
+                .font(.caption)
         }
     }
 }

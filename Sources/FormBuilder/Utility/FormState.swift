@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class FormState: ObservableObject {
+public class FormState: ObservableObject {
     private var values: [String: FieldValue] = [:]
     private var validationResults: [String: ValidationResult] = [:]
     @Published var isValid: Bool = false
@@ -17,7 +17,7 @@ class FormState: ObservableObject {
         values[fieldId] = value
     }
     
-    func getValue(for fieldId: String) -> FieldValue {
+    public func getValue(for fieldId: String) -> FieldValue {
         return values[fieldId] ?? .none
     }
     
@@ -29,7 +29,7 @@ class FormState: ObservableObject {
         }
     }
     
-    func getValidationResult(for fieldId: String) -> ValidationResult? {
+    public func getValidationResult(for fieldId: String) -> ValidationResult? {
         validationResults[fieldId]
     }
 }

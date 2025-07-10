@@ -12,10 +12,10 @@ class FormValidator: ObservableObject {
         var errors: [ValidationError] = []
         
         for rule in field.validationRules {
-            let result = rule.validate(value)
-            if !result.isValid {
-                errors.append(contentsOf: result.errors)
-            }
+//            let result = rule.validate(value)
+//            if !result.isValid {
+//                errors.append(contentsOf: result.errors)
+//            }
         }
         
         return ValidationResult(isValid: errors.isEmpty, errors: errors)

@@ -1,10 +1,11 @@
 //
-//  FormComponentBuilder.swift
+//  EnhancedFormComponentBuilder.swift
 //  FormBuilder
 //
-//  Created by Mohammad Nabulsi on 07.07.25.
+//  Created by Mohammad Nabulsi on 10.07.25.
 //
 
+import Foundation
 import SwiftUICore
 
 @resultBuilder
@@ -23,6 +24,22 @@ public struct FormComponentBuilder {
     
     public static func buildArray(_ components: [any FormComponent]) -> [any FormComponent] {
         return components
+    }
+    
+    public static func buildOptional(_ component: (any FormComponent)?) -> (any FormComponent)? {
+        return component
+    }
+    
+    public static func buildIf(_ component: (any FormComponent)?) -> (any FormComponent)? {
+        return component
+    }
+    
+    public static func buildExpression(_ expression: [any FormComponent]) -> [any FormComponent] {
+        return expression
+    }
+    
+    public static func buildExpression(_ expression: any FormComponent) -> any FormComponent {
+        return expression
     }
 }
 
@@ -69,4 +86,34 @@ public func Divider(color: Color = .secondary, thickness: CGFloat = 1) -> FormDi
 
 public func Text(_ text: String, font: Font = .body, color: Color = .primary) -> FormText {
     return FormText(text, font: font, color: color)
+}
+
+public func Card(
+    title: String? = nil,
+    subtitle: String? = nil,
+    style: FormCard.CardStyle = FormCard.CardStyle(),
+    @FormComponentBuilder components: () -> [any FormComponent]
+) -> FormCard {
+    return FormCard(title: title, subtitle: subtitle, style: style, components: components)
+}
+
+public func ConditionalComponent(
+    condition: @escaping (FormState) -> Bool,
+    @FormComponentBuilder component: () -> any FormComponent
+) -> ConditionalFormComponent {
+    return ConditionalFormComponent(condition: condition, component: component)
+}
+
+public func List<Item: Identifiable>(
+    items: [Item],
+    @FormComponentBuilder itemBuilder: @escaping (Item) -> any FormComponent
+) -> FormList<Item> {
+    return FormList(items: items, itemBuilder: itemBuilder)
+}
+
+public func Stepper(
+    currentStep: Int = 0,
+    steps: [FormStepper.FormStep]
+) -> FormStepper {
+    return FormStepper(currentStep: currentStep, steps: steps)
 }
