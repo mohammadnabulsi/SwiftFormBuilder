@@ -46,14 +46,6 @@ struct ComprehensiveForm: FormDefinition {
             
             Spacer(16)
             
-            Stepper(steps: [
-                FormStepper.FormStep(title: "Step 1", isValid: { state in
-                    !state.getValue(for: "name").stringValue.isEmpty
-                }) {
-                    TextField("name").required()
-                }
-            ])
-            
             // Personal Information Section
             Section("Personal Information") {
                 // Basic personal fields in a row
@@ -166,8 +158,8 @@ struct ComprehensiveForm: FormDefinition {
             Spacer(20)
             
             // Conditional section - only shows if willing to relocate
-//            ConditionalComponent(condition: { formState in
-//                formState.getValue(for: "willingToRelocate").boolValue
+//            ConditionalComponent(condition: {
+//                true
 //            }) {
 //                Section("Relocation Preferences") {
 //                    Text("Since you're willing to relocate, please provide additional information:")

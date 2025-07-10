@@ -98,7 +98,7 @@ public func Card(
 }
 
 public func ConditionalComponent(
-    condition: @escaping (FormState) -> Bool,
+    condition: @escaping () -> Bool,
     @FormComponentBuilder component: () -> any FormComponent
 ) -> ConditionalFormComponent {
     return ConditionalFormComponent(condition: condition, component: component)
@@ -109,11 +109,4 @@ public func List<Item: Identifiable>(
     @FormComponentBuilder itemBuilder: @escaping (Item) -> any FormComponent
 ) -> FormList<Item> {
     return FormList(items: items, itemBuilder: itemBuilder)
-}
-
-public func Stepper(
-    currentStep: Int = 0,
-    steps: [FormStepper.FormStep]
-) -> FormStepper {
-    return FormStepper(currentStep: currentStep, steps: steps)
 }

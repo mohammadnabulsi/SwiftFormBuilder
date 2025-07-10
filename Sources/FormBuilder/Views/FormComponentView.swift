@@ -75,9 +75,6 @@ struct FormComponentView: View {
 //            if conditional.condition(formState) {
 //                FormComponentView(component: conditional.component)
 //            }
-            
-        case let stepper as FormStepper:
-            FormStepperView(stepper: stepper)
         default:
             SwiftUI.Text("Unknown component: \(String(describing: type(of: component)))")
                 .foregroundColor(.red)
