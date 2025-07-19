@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftFormBuilder
+import FormBuilder
 
 struct ContentView: View {
     @State private var showingBasicForm = false

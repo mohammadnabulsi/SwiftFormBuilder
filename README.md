@@ -22,7 +22,7 @@ Add FormBuilder to your Swift Package Manager dependencies:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/mohammadnabulsi/SwiftFormBuilder.git", from: "1.0.0")
+    .package(url: "https://github.com/mohammadnabulsi/FormBuilder.git", from: "1.0.0")
 ]
 ```
 
@@ -30,7 +30,7 @@ dependencies: [
 
 ```swift
 import SwiftUI
-import SwiftFormBuilder
+import FormBuilder
 
 struct RegistrationForm: FormDefinition {
     var title: String { "Create Account" }

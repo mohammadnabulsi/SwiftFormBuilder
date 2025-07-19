@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84CC40F62E2BA64F0016933D /* SwiftFormBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = 84CC40F52E2BA64F0016933D /* SwiftFormBuilder */; };
+		84CC40F62E2BA64F0016933D /* FormBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = 84CC40F52E2BA64F0016933D /* FormBuilder */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84CC40F62E2BA64F0016933D /* SwiftFormBuilder in Frameworks */,
+				84CC40F62E2BA64F0016933D /* FormBuilder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +78,7 @@
 			);
 			name = FormBuilderExample;
 			packageProductDependencies = (
-				84CC40F52E2BA64F0016933D /* SwiftFormBuilder */,
+				84CC40F52E2BA64F0016933D /* FormBuilder */,
 			);
 			productName = FormBuilderExample;
 			productReference = 842F78042E1FD8C900865EF3 /* FormBuilderExample.app */;
@@ -350,10 +350,10 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		84CC40F52E2BA64F0016933D /* SwiftFormBuilder */ = {
+		84CC40F52E2BA64F0016933D /* FormBuilder */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 842F78122E1FD8E100865EF3 /* XCLocalSwiftPackageReference "../../FormBuilder" */;
-			productName = SwiftFormBuilder;
+			productName = FormBuilder;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
