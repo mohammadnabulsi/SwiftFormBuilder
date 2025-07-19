@@ -1,6 +1,6 @@
 //
 //  RegistrationForm.swift
-//  FormBuilderExample
+//  SwiftFormBuilderExample
 //
 //  Created by Mohammad Nabulsi on 10.07.25.
 //

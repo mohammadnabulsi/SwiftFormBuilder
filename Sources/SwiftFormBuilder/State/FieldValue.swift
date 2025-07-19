@@ -1,6 +1,6 @@
 //
 //  FieldValue.swift
-//  FormBuilder
+//  SwiftFormBuilder
 //
 //  Created by Mohammad Nabulsi on 07.07.25.
 //
@@ -9,7 +9,7 @@ import Foundation
 
 /// A type-safe enumeration representing different types of values that form fields can hold.
 ///
-/// `FieldValue` provides a unified way to handle various data types within the FormBuilder
+/// `FieldValue` provides a unified way to handle various data types within the SwiftFormBuilder
 /// system while maintaining type safety and enabling easy conversion between different
 /// representations. This enum supports all common form input types and provides convenient
 /// methods for accessing and converting values.

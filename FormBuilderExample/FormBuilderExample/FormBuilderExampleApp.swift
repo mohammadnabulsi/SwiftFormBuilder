@@ -1,6 +1,6 @@
 //
-//  FormBuilderExampleApp.swift
-//  FormBuilderExample
+//  SwiftFormBuilderExampleApp.swift
+//  SwiftFormBuilderExample
 //
 //  Created by Mohammad Nabulsi on 10.07.25.
 //

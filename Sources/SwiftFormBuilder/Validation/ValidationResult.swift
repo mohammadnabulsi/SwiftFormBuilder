@@ -1,6 +1,6 @@
 //
 //  ValidationResult.swift
-//  FormBuilder
+//  SwiftFormBuilder
 //
 //  Created by Mohammad Nabulsi on 07.07.25.
 //
@@ -9,7 +9,7 @@
 ///
 /// `ValidationResult` encapsulates the outcome of applying validation rules to a field value,
 /// providing both a boolean validity indicator and detailed error information. This structure
-/// is used throughout the FormBuilder validation system to communicate validation outcomes
+/// is used throughout the SwiftSwiftFormBuilder validation system to communicate validation outcomes
 /// between validation rules, field states, and UI components.
 ///
 /// ## Overview

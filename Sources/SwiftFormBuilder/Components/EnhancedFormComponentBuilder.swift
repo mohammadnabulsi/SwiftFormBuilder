@@ -1,6 +1,6 @@
 //
 //  EnhancedFormComponentBuilder.swift
-//  FormBuilder
+//  SwiftFormBuilder
 //
 //  Created by Mohammad Nabulsi on 10.07.25.
 //
@@ -10,7 +10,7 @@ import SwiftUICore
 
 /// A result builder that enables declarative syntax for constructing form components.
 ///
-/// `FormComponentBuilder` is the core of FormBuilder's Domain Specific Language (DSL),
+/// `FormComponentBuilder` is the core of SwiftFormBuilder's Domain Specific Language (DSL),
 /// providing a SwiftUI-like syntax for building forms declaratively. This result builder
 /// transforms block-based component declarations into arrays of form components that can
 /// be processed by the form rendering system.
@@ -228,7 +228,7 @@ public struct FormComponentBuilder {
 /// Creates a text input field with the specified identifier.
 ///
 /// This function provides a convenient way to create text form fields using the
-/// FormBuilder DSL. The returned field can be further configured using method chaining.
+/// SwiftFormBuilder DSL. The returned field can be further configured using method chaining.
 ///
 /// - Parameter id: Unique identifier for the text field
 /// - Returns: A configurable `TextFormField` instance
@@ -248,7 +248,7 @@ public func TextField(_ id: String) -> TextFormField {
 /// Creates a date picker field with the specified identifier.
 ///
 /// This function provides a convenient way to create date input fields using the
-/// FormBuilder DSL. The returned field can be configured for various date and time
+/// SwiftFormBuilder DSL. The returned field can be configured for various date and time
 /// input scenarios.
 ///
 /// - Parameter id: Unique identifier for the date field
@@ -268,7 +268,7 @@ public func DatePicker(_ id: String) -> DateFormField {
 /// Creates a toggle/switch field with the specified identifier.
 ///
 /// This function provides a convenient way to create boolean toggle fields using
-/// the FormBuilder DSL. Perfect for yes/no questions, feature toggles, and settings.
+/// the SwiftSwiftFormBuilder DSL. Perfect for yes/no questions, feature toggles, and settings.
 ///
 /// - Parameter id: Unique identifier for the toggle field
 /// - Returns: A configurable `ToggleFormField` instance
@@ -286,7 +286,7 @@ public func ToggleField(_ id: String) -> ToggleFormField {
 /// Creates a picker field for selecting from multiple options.
 ///
 /// This function provides a convenient way to create selection fields using the
-/// FormBuilder DSL. Supports both single and multi-selection scenarios.
+/// SwiftFormBuilder DSL. Supports both single and multi-selection scenarios.
 ///
 /// - Parameter id: Unique identifier for the picker field
 /// - Returns: A configurable `PickerFormField` instance

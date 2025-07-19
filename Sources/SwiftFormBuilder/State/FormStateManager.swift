@@ -1,6 +1,6 @@
 //
 //  FormStateManager.swift
-//  FormBuilder
+//  SwiftFormBuilder
 //
 //  Created by Mohammad Nabulsi on 10.07.25.
 //
@@ -10,7 +10,7 @@ import SwiftUICore
 
 /// A centralized state manager for handling form field values, validation, and overall form state.
 ///
-/// `FormStateManager` serves as the backbone of the FormBuilder library's state management system,
+/// `FormStateManager` serves as the backbone of the SwiftSwiftFormBuilder library's state management system,
 /// providing a non-observable, thread-safe way to manage form data without triggering unnecessary
 /// view updates. It coordinates between form fields, validation systems, and the overall form state.
 ///
@@ -40,7 +40,7 @@ import SwiftUICore
 ///
 /// ## Usage Pattern
 ///
-/// While typically used internally by the FormBuilder system, you can interact with it directly:
+/// While typically used internally by the SwiftSwiftFormBuilder system, you can interact with it directly:
 ///
 /// ```swift
 /// // Get current field value

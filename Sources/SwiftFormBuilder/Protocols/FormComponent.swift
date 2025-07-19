@@ -1,11 +1,11 @@
 //
 //  FormComponent.swift
-//  FormBuilder
+//  SwiftFormBuilder
 //
 //  Created by Mohammad Nabulsi on 07.07.25.
 //
 
-/// The base protocol for all form components in the FormBuilder library.
+/// The base protocol for all form components in the SwiftSwiftFormBuilder library.
 ///
 /// `FormComponent` serves as the foundation for all elements that can be included in a form,
 /// providing a unique identifier for each component. This protocol enables the form builder

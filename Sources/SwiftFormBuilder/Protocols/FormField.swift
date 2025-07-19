@@ -1,6 +1,6 @@
 //
 //  FormField.swift
-//  FormBuilder
+//  SwiftFormBuilder
 //
 //  Created by Mohammad Nabulsi on 07.07.25.
 //
@@ -21,7 +21,7 @@
 ///
 /// ## Field Types
 ///
-/// The FormBuilder library provides several built-in field types:
+/// The SwiftFormBuilder library provides several built-in field types:
 /// - `TextFormField` - Single and multi-line text input
 /// - `DateFormField` - Date and time selection
 /// - `ToggleFormField` - Boolean on/off switches

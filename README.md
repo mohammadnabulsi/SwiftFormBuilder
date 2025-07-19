@@ -1,4 +1,4 @@
-# FormBuilder for SwiftUI
+# SwiftFormBuilder
 
 A powerful, declarative form building library for SwiftUI that provides a clean DSL for creating complex forms with validation, state management, and flexible layouts.
 
@@ -18,11 +18,11 @@ A powerful, declarative form building library for SwiftUI that provides a clean 
 
 ### Installation
 
-Add FormBuilder to your Swift Package Manager dependencies:
+Add SwiftFormBuilder to your Swift Package Manager dependencies:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/mohammadnabulsi/SwiftFormBuilder.git", from: "1.0.0")
+    .package(url: "https://github.com/SwiftFormBuilder/SwiftFormBuilder.git", from: "1.0.0")
 ]
 ```
 
@@ -78,7 +78,7 @@ struct ContentView: View {
 
 ## Architecture
 
-FormBuilder is built around several key concepts:
+SwiftFormBuilder is built around several key concepts:
 
 ### Form Components
 
@@ -103,7 +103,7 @@ All form elements conform to the `FormComponent` protocol, providing a unique id
 
 ### State Management
 
-FormBuilder uses a centralized state management system:
+SwiftFormBuilder uses a centralized state management system:
 
 - **FormStateManager** - Manages all field values and validation results
 - **FieldState** - Observable state for individual fields
@@ -427,7 +427,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ## License
 
-FormBuilder is available under the MIT License. See [LICENSE](LICENSE) for details.
+SwiftFormBuilder is available under the MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 

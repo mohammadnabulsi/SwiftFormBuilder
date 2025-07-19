@@ -1,6 +1,6 @@
 //
 //  ValidationRule.swift
-//  FormBuilder
+//  SwiftFormBuilder
 //
 //  Created by Mohammad Nabulsi on 07.07.25.
 //
@@ -9,11 +9,11 @@
 ///
 /// `ValidationRule` provides a standardized interface for implementing validation logic
 /// that can be applied to form fields. This protocol enables the creation of reusable,
-/// composable validation rules that integrate seamlessly with the FormBuilder validation system.
+/// composable validation rules that integrate seamlessly with the SwiftSwiftFormBuilder validation system.
 ///
 /// ## Overview
 ///
-/// Validation rules serve as the foundation of FormBuilder's validation system, providing:
+/// Validation rules serve as the foundation of SwiftFormBuilder's validation system, providing:
 /// - **Standardized Interface**: Consistent validation API across all rule types
 /// - **Composability**: Multiple rules can be applied to a single field
 /// - **Reusability**: Rules can be shared across different fields and forms

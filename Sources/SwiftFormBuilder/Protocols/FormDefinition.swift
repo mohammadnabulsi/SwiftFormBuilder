@@ -1,11 +1,11 @@
 //
 //  FormDefinition.swift
-//  FormBuilder
+//  SwiftFormBuilder
 //
 //  Created by Mohammad Nabulsi on 07.07.25.
 //
 
-/// The main protocol for defining complete form structures in the FormBuilder library.
+/// The main protocol for defining complete form structures in the SwiftSwiftFormBuilder library.
 ///
 /// `FormDefinition` serves as the primary entry point for creating forms, providing
 /// the essential metadata and structure that defines how a form should appear and behave.
@@ -19,7 +19,7 @@
 /// - Implicit integration with the form builder's DSL (Domain Specific Language)
 ///
 /// The `@FormComponentBuilder` attribute on the `body` property enables the use of
-/// FormBuilder's declarative syntax, allowing for intuitive form construction using
+/// SwiftFormBuilder's declarative syntax, allowing for intuitive form construction using
 /// a SwiftUI-like approach.
 ///
 /// ## Usage Pattern
@@ -96,7 +96,7 @@ public protocol FormDefinition {
     /// The complete structure and content of the form.
     ///
     /// This property defines the form's layout, fields, and components using
-    /// FormBuilder's declarative syntax. The `@FormComponentBuilder` attribute
+    /// SwiftFormBuilder's declarative syntax. The `@FormComponentBuilder` attribute
     /// enables the use of the form builder DSL for intuitive form construction.
     ///
     /// The body can contain any combination of:

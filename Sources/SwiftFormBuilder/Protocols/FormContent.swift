@@ -1,6 +1,6 @@
 //
 //  FormContent.swift
-//  FormBuilder
+//  SwiftFormBuilder
 //
 //  Created by Mohammad Nabulsi on 07.07.25.
 //
@@ -24,7 +24,7 @@
 ///
 /// ## Common Implementations
 ///
-/// The FormBuilder library provides several built-in form content types:
+/// The SwiftFormBuilder library provides several built-in form content types:
 /// - `FormComponents` - Root container for form elements
 /// - `FormSection` - Grouped content with optional title
 /// - `FormRow` - Horizontal arrangement of components
