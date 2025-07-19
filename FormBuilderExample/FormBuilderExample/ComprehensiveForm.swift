@@ -5,7 +5,7 @@
 //  Created by Mohammad Nabulsi on 10.07.25.
 //
 
-import SwiftFormBuilder
+import FormBuilder
 import Foundation
 
 struct Country: Identifiable {
