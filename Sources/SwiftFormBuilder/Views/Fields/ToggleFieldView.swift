@@ -49,8 +49,8 @@ struct ToggleFieldView: View {
             }
         }
         .animation(.easeInOut(duration: 0.2), value: validationResult?.isValid ?? false)
-        .onChange(of: localValue) { oldValue, newValue in
-            guard oldValue != newValue, hasInitialized else { return }
+        .onChange(of: localValue) { newValue in
+            guard hasInitialized else { return }
             
             commitValue(newValue)
         }

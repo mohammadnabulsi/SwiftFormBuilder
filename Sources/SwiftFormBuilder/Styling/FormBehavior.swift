@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct FormBehavior {
+public struct FormBehavior: Sendable {
     public var validateOnSubmit: Bool
     public var validateOnChange: Bool
     public var disableSubmitWhenInvalid: Bool
@@ -28,8 +28,8 @@ public struct FormBehavior {
         self.autoScroll = autoScroll
     }
     
-    @MainActor public static let `default` = FormBehavior()
-    @MainActor public static let lenient = FormBehavior(
+    public static let `default` = FormBehavior()
+    public static let lenient = FormBehavior(
         disableSubmitWhenInvalid: false,
         preventSubmitWhenInvalid: false
     )

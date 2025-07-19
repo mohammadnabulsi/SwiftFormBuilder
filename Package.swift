@@ -4,21 +4,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "FormBuilder",
+    name: "SwiftFormBuilder",
     platforms: [
-        .iOS(.v17),
+        .iOS(.v16),
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "FormBuilder",
-            targets: ["FormBuilder"]),
+            name: "SwiftFormBuilder",
+            targets: ["SwiftFormBuilder"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "FormBuilder"),
-
+            name: "SwiftFormBuilder"),
     ]
 )

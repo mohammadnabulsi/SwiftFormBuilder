@@ -47,7 +47,7 @@ struct DateFieldView: View {
                 DatePicker("", selection: $localValue, in: field.dateRange ?? Date.distantPast...Date.distantFuture, displayedComponents: .date)
                     .datePickerStyle(CompactDatePickerStyle())
                     .disabled(fieldStyle?.isDisabled == true)
-                    .onChange(of: localValue) { _, newValue in
+                    .onChange(of: localValue) { newValue in
                         commitValue(newValue)
                     }
                     .padding(fieldStyle?.padding ?? EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))

@@ -69,13 +69,13 @@ struct StepperFieldView: View {
                 if let range = field.range {
                     Stepper("", value: $localValue, in: range, step: field.step)
                         .labelsHidden()
-                        .onChange(of: localValue) { _, newValue in
+                        .onChange(of: localValue) { newValue in
                             commitValue(newValue)
                         }
                 } else {
                     Stepper("", value: $localValue, step: field.step)
                         .labelsHidden()
-                        .onChange(of: localValue) { _, newValue in
+                        .onChange(of: localValue) { newValue in
                             commitValue(newValue)
                         }
                 }

@@ -62,7 +62,7 @@
 ///
 /// - Note: A validation result with `isValid: true` may still contain errors for informational purposes.
 /// - Important: The `errors` array provides detailed information about what validation rules failed.
-public struct ValidationResult {
+public struct ValidationResult : Sendable{
     /// Indicates whether the validation passed or failed.
     ///
     /// This boolean property provides a quick way to determine if the validated

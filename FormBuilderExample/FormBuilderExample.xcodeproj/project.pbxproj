@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		842F78142E1FD8E100865EF3 /* FormBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = 842F78132E1FD8E100865EF3 /* FormBuilder */; };
+		84CC40F62E2BA64F0016933D /* SwiftFormBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = 84CC40F52E2BA64F0016933D /* SwiftFormBuilder */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				842F78142E1FD8E100865EF3 /* FormBuilder in Frameworks */,
+				84CC40F62E2BA64F0016933D /* SwiftFormBuilder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +38,7 @@
 			isa = PBXGroup;
 			children = (
 				842F78062E1FD8C900865EF3 /* FormBuilderExample */,
+				84CC40F42E2BA64F0016933D /* Frameworks */,
 				842F78052E1FD8C900865EF3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,6 +49,13 @@
 				842F78042E1FD8C900865EF3 /* FormBuilderExample.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		84CC40F42E2BA64F0016933D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -70,7 +78,7 @@
 			);
 			name = FormBuilderExample;
 			packageProductDependencies = (
-				842F78132E1FD8E100865EF3 /* FormBuilder */,
+				84CC40F52E2BA64F0016933D /* SwiftFormBuilder */,
 			);
 			productName = FormBuilderExample;
 			productReference = 842F78042E1FD8C900865EF3 /* FormBuilderExample.app */;
@@ -342,9 +350,10 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		842F78132E1FD8E100865EF3 /* FormBuilder */ = {
+		84CC40F52E2BA64F0016933D /* SwiftFormBuilder */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = FormBuilder;
+			package = 842F78122E1FD8E100865EF3 /* XCLocalSwiftPackageReference "../../FormBuilder" */;
+			productName = SwiftFormBuilder;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -22,7 +22,7 @@ Add FormBuilder to your Swift Package Manager dependencies:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/your-repo/FormBuilder.git", from: "1.0.0")
+    .package(url: "https://github.com/mohammadnabulsi/SwiftFormBuilder.git", from: "1.0.0")
 ]
 ```
 
@@ -30,7 +30,7 @@ dependencies: [
 
 ```swift
 import SwiftUI
-import FormBuilder
+import SwiftFormBuilder
 
 struct RegistrationForm: FormDefinition {
     var title: String { "Create Account" }
@@ -428,13 +428,6 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 ## License
 
 FormBuilder is available under the MIT License. See [LICENSE](LICENSE) for details.
-
-## Support
-
-- 📚 [Documentation](https://formbuilder-docs.example.com)
-- 💬 [Discord Community](https://discord.gg/formbuilder)
-- 🐛 [Issue Tracker](https://github.com/your-repo/FormBuilder/issues)
-- 📧 [Email Support](mailto:support@formbuilder.dev)
 
 ---
 

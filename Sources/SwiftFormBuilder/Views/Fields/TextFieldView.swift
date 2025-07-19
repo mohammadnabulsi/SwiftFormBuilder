@@ -58,7 +58,7 @@ struct TextFieldView: View {
                     ))
                     .disabled(fieldStyle?.isDisabled == true)
                     .focused($isFocused)
-                    .onChange(of: localValue) { _, newValue in
+                    .onChange(of: localValue) { newValue in
                         handleValueChange(newValue)
                     }
                     .onSubmit {

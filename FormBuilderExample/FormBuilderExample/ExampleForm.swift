@@ -5,7 +5,7 @@
 //  Created by Mohammad Nabulsi on 10.07.25.
 //
 
-import FormBuilder
+import SwiftFormBuilder
 
 struct BasicForm: FormDefinition {
     var title: String { "Enhanced Form" }

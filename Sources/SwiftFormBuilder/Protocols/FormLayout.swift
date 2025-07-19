@@ -52,7 +52,7 @@ import UIKit
 ///
 /// - Note: Layout changes affect the entire form's appearance and should be chosen to match your app's design system.
 /// - Important: Some layout properties may be platform-specific and could behave differently on iOS vs other platforms.
-public struct FormLayout {
+public struct FormLayout : Sendable{
     /// The padding applied around the form's content area.
     ///
     /// This padding creates space between the form content and the edges of the
@@ -157,7 +157,7 @@ public struct FormLayout {
     /// - System grouped background color
     /// - Large navigation title
     /// - Submit button enabled
-    @MainActor public static let `default` = FormLayout()
+    public static let `default` = FormLayout()
     
     /// A compact form layout optimized for space efficiency.
     ///
@@ -170,7 +170,7 @@ public struct FormLayout {
     /// - System grouped background color
     /// - Inline navigation title
     /// - Submit button enabled
-    @MainActor public static let compact = FormLayout(
+    public static let compact = FormLayout(
         contentPadding: EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12),
         titleDisplayMode: .inline
     )
